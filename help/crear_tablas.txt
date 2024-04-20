@@ -1,0 +1,34 @@
+CREATE TABLE IF NOT EXISTS direcciones_ip (
+    codigo INT PRIMARY KEY,
+    ip VARCHAR(15) NOT NULL,
+    usuario VARCHAR(50),
+    estado VARCHAR(20)
+);
+
+DELIMITER //
+
+CREATE PROCEDURE GenerateIPs()
+BEGIN
+    DECLARE ip_suffix INT DEFAULT 0;
+    WHILE ip_suffix <= 65535 DO
+        INSERT INTO direcciones_ip (ip) VALUES (CONCAT('10.1.', (ip_suffix DIV 256), '.', (ip_suffix MOD 256)));
+        SET ip_suffix = ip_suffix + 1;
+    END WHILE;
+END //
+DELIMITER ;
+CALL GenerateIPs();
+
+SELECT * FROM direcciones_ip WHERE ip LIKE '%.0';
+
+
+
+CREATE TABLE `tareas` (
+  `usuario` varchar(150) DEFAULT NULL,
+  `sucursal` varchar(150) DEFAULT NULL,
+  `servidor_ant` varchar(150) DEFAULT NULL,
+  `estado` varchar(150) DEFAULT NULL,
+  `ip_ant` varchar(150) DEFAULT NULL,
+  `dominio_ant` varchar(150) DEFAULT NULL,
+  `dominio` varchar(150) DEFAULT NULL,
+  `fecha` datetime DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci
