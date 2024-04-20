@@ -3,7 +3,7 @@ require_once '/var/www/html/activacion/help/vendor/autoload.php';
 include "conexionLocalhost.php";
 include "0.conexionODOO.php";
 
-//$ser_ip = "187.61.92.2";
+//$ser_ip = "187.61.92.2";asdasd
 $ser_usuario = "Tele@Lf@CoM";
 $ser_pass = "Alf@neT2024.**";
 $ser_puerto = 18728;
